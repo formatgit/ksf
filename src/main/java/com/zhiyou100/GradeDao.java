@@ -12,4 +12,5 @@ import java.util.List;
 public interface GradeDao {
     Grade findById(int id);
 
+
 }
