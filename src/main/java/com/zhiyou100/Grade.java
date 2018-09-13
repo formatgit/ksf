@@ -15,6 +15,8 @@ import java.util.List;
 public class Grade {
 
     private int id;
+
+
     private String name;
     /*表示一对多*/
     private List<Student> studentList;
