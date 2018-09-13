@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.com.zhiyou100.day02.homework.RoleDao">
+    <resultMap id="role" type="com.com.zhiyou100.day02.homework.Role" >
+        <id property="id" column="role_id"></id>
+        <result property="name" column="role_name"></result>
+        <collection property="permissions" resultMap="permission" ofType="com.com.zhiyou100.day02.homework.Permission"></collection>
+    </resultMap>
+    <resultMap id="permission" type="com.com.zhiyou100.day02.homework.Permission">
+        <id property="id" column="permission_id"></id>
+        <result property="name" column="permission_name"></result>
+    </resultMap>
+
+
+
+    <select id="findById" resultMap="role">
+        select
+        l.id role_id,
+        l.name role_name,
+        r.id permission_id,
+        r.name permission_name
+        from
+        role l,role_permission m,permission r
+        where
+        l.id=m.rid and m.pid=r.id
+        and l.id=#{id}
+    </select>
+
+
+    <select id="findPermissionsById" resultMap="permission">
+        select
+        r.id permission_id,
+        r.name permission_name
+        from
+        role l,role_permission m,permission r
+        where
+        l.id=m.rid and m.pid=r.id
+        and l.id=#{id}
+    </select>
+
+</mapper>
