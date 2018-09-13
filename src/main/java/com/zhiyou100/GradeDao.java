@@ -10,6 +10,7 @@ import java.util.List;
  @Version:v1.0
 */
 public interface GradeDao {
+
     Grade findById(int id);
 
 
